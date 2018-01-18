@@ -4,6 +4,9 @@ import { addNavigationHelpers, StackNavigator, TabNavigator } from 'react-naviga
 import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
+import Groups from './screens/groups.screen';
+import Messages from './screens/messages.screen';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -31,13 +34,14 @@ const TestScreen = title => () => (
 
 // Our main scene with tabs
 const MainScreenNavigator = TabNavigator({
-  Chats: { screen: TestScreen('Chats') },
+  Chats: { screen: Groups },
   Settings: { screen: TestScreen('Settings') },
 });
 
 // Navigation stack for our entire application
 const AppNavigator = StackNavigator({
   Main: { screen: MainScreenNavigator },
+  Messages: { screen: Messages },
 });
 
 // reducer initialization code
