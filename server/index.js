@@ -3,6 +3,8 @@ const { graphqlExpress, graphiqlExpress} = require('graphql-server-express');
 const { makeExecutableSchema, addMockFunctionsToSchema } = require('graphql-tools');
 const bodyParser = require('body-parser');
 const { createServer } = require('http');
+const cors = require('cors');
+
 const Schema = require('./data/schema');
 const Mocks = require('./data/mocks');
 const Resolvers = require('./data/resolvers');
@@ -14,6 +16,12 @@ const executableSchema = makeExecutableSchema({
   typeDefs: Schema,
   resolvers: Resolvers,
 });
+
+const corsOptions = {
+  origin: 'http://localhost:8081',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+}
+app.use(cors(corsOptions));
 
 // addMockFunctionsToSchema({
 //   schema: executableSchema,
