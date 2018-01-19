@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import MESSAGE_FRAGMENT from './message.fragment';
 
 export const GROUP_QUERY = gql`
   query group($groupId: Int!) {
@@ -10,14 +11,9 @@ export const GROUP_QUERY = gql`
         username
       }
       messages {
-        id
-        from {
-          id
-          username
-        }
-        createdAt
-        text
+        ... MessageFragment
       }
     }
   }
+  ${MESSAGE_FRAGMENT}
 `;

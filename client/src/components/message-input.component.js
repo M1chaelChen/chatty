@@ -58,10 +58,9 @@ class MessageInput extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.send = this.send.bind(this);
   }
 
-  send() {
+  send = () => {
     this.props.send(this.state.text);
     this.textInput.clear();
     this.textInput.blur();
